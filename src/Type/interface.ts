@@ -21,8 +21,8 @@ export interface Category {
 export interface ProductProps {
   club: CardProps;
   createdAt: string;
-  leaders: [];
-  partners: [];
+  leaders: [{ name: string }];
+  partners: [{ name: string }];
   price: number;
 }
 
