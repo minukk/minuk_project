@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Nav = () => {
   return (
     <Header>
-      <Link to='/apply'>
+      <Link to='/'>
         <h1>TREVARI</h1>
       </Link>
     </Header>
