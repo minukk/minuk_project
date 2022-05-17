@@ -48,8 +48,8 @@ export interface SearchSelect {
 export interface CheckboxProps {
   item: string;
   select: SearchStateProps;
-  selectCate: SearchSelect;
-  setSelectCate: Function;
+  selectFilter: SearchSelect;
+  setSelectFilter: Function;
 }
 
 export interface CategoryProps {

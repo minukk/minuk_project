@@ -13,7 +13,7 @@ const ProductSearch = ({ setSearch, searchKeyword, setSearchKeyword, searchEnter
 
   const [isFilterClick, setIsFilterClick] = useState(false);
 
-  const [selectCate, setSelectCate] = useState<SearchSelect>({
+  const [selectFilter, setSelectFilter] = useState<SearchSelect>({
     placeFilter: [],
     dayFilter: [],
     typeFilter: [],
@@ -23,7 +23,7 @@ const ProductSearch = ({ setSearch, searchKeyword, setSearchKeyword, searchEnter
   const navigate = useNavigate();
 
   const resetSearch = useCallback(() => {
-    setSelectCate({
+    setSelectFilter({
       placeFilter: [],
       dayFilter: [],
       typeFilter: [],
@@ -36,10 +36,10 @@ const ProductSearch = ({ setSearch, searchKeyword, setSearchKeyword, searchEnter
       category: [],
     });
     navigate('/apply');
-  }, [setSelectCate, setSearch, navigate]);
+  }, [setSelectFilter, setSearch, navigate]);
 
   const submitFilter = useCallback(() => {
-    const filterEntries = Object.entries(selectCate);
+    const filterEntries = Object.entries(selectFilter);
 
     const filter = filterEntries.filter((item: [string, string[]]) => item[1].length !== 0);
     console.log(filter);
@@ -54,16 +54,16 @@ const ProductSearch = ({ setSearch, searchKeyword, setSearchKeyword, searchEnter
     });
 
     setSearch({
-      place: selectCate.placeFilter,
-      day: selectCate.dayFilter,
-      type: selectCate.typeFilter,
-      category: selectCate.categoryFilter,
+      place: selectFilter.placeFilter,
+      day: selectFilter.dayFilter,
+      type: selectFilter.typeFilter,
+      category: selectFilter.categoryFilter,
     });
 
     navigate(`/apply${result}`);
 
     setIsFilterClick(false);
-  }, [selectCate, navigate, setSearch]);
+  }, [selectFilter, navigate, setSearch]);
 
   const handleSearchInput = useCallback(
     (e: React.KeyboardEvent) => {
@@ -88,8 +88,8 @@ const ProductSearch = ({ setSearch, searchKeyword, setSearchKeyword, searchEnter
                   key={item}
                   item={item}
                   select={select}
-                  selectCate={selectCate}
-                  setSelectCate={setSelectCate}
+                  selectFilter={selectFilter}
+                  setSelectFilter={setSelectFilter}
                 />
               );
             })}

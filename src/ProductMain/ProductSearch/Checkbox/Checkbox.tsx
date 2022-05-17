@@ -2,23 +2,23 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { CheckboxProps } from 'src/Type/interface';
 
-const Checkbox = ({ item, select, selectCate, setSelectCate }: CheckboxProps) => {
+const Checkbox = ({ item, select, selectFilter, setSelectFilter }: CheckboxProps) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const checkedType = (type: string) => {
     let data;
     switch (type) {
       case 'placeFilter':
-        data = selectCate.placeFilter;
+        data = selectFilter.placeFilter;
         break;
       case 'dayFilter':
-        data = selectCate.dayFilter;
+        data = selectFilter.dayFilter;
         break;
       case 'typeFilter':
-        data = selectCate.typeFilter;
+        data = selectFilter.typeFilter;
         break;
       case 'categoryFilter':
-        data = selectCate.categoryFilter;
+        data = selectFilter.categoryFilter;
         break;
       default:
         break;
@@ -31,17 +31,17 @@ const Checkbox = ({ item, select, selectCate, setSelectCate }: CheckboxProps) =>
       const checkedFunc = e.target.checked
         ? checkedType(select.filter)?.concat(e.target.value)
         : checkedType(select.filter)?.filter((item) => item !== e.target.value);
-      setSelectCate({
-        ...selectCate,
+      setSelectFilter({
+        ...selectFilter,
         [select.filter]: checkedFunc,
       });
     },
-    [selectCate],
+    [selectFilter],
   );
 
   useEffect(() => {
     checkedType(select.filter)?.includes(item) ? setIsChecked(true) : setIsChecked(false);
-  }, [selectCate]);
+  }, [selectFilter]);
 
   return (
     <CheckboxItem>
