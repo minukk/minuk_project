@@ -81,7 +81,11 @@ const Main = () => {
 };
 
 const MainWrap = styled.main`
-  padding: 30px 120px;
+  padding: 30px 40px;
+
+  @media screen and (max-width: 768px) {
+    padding: 30px 10px;
+  }
 `;
 
 const ProductCard = styled.section`
@@ -89,8 +93,17 @@ const ProductCard = styled.section`
 
   > ul {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    width: 100%;
+  }
+
+  @media screen and (max-width: 768px) {
+    > ul {
+      > li {
+        width: 400px;
+        margin-bottom: 30px;
+      }
+    }
   }
 `;
 

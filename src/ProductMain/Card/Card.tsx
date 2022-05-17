@@ -20,7 +20,7 @@ const Card = ({ item }: ItemProps) => {
 };
 
 const CardWrap = styled.li`
-  width: 380px;
+  width: 320px;
   height: 500px;
   margin: 10px;
   border: 1px solid #ddd;
