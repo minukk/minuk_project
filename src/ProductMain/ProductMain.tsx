@@ -34,19 +34,35 @@ const Main = () => {
       .catch((err) => console.error(err));
   }, []);
 
+  const filterFunc = (prev: ProductProps[]) => {
+    let result: any;
+    for (const opt in search) {
+      if (search[opt].length === 0) continue;
+      result = prev.filter((data: any) => search[opt].includes(data.club[opt]));
+    }
+    return result;
+  };
+
   useEffect(() => {
     if (search.place.length === 0 && search.type.length === 0) setFilterProduct(product);
     else {
-      setFilterProduct(
-        product.filter((data: any) => {
+      setFilterProduct((prev) => filterFunc(prev));
+    }
+  }, [search, product]);
+
+  /* 
+    for (const opt in search) {
+      if (search[opt].length === 0) continue;
+      product.filter(data => search[opt].includes(data.club[opt]));
+    }
+
+     product.filter((data: any) => {
           for (const opt in search) {
             if (search[opt].length === 0) continue;
             return search[opt].includes(data.club[opt]);
           }
-        }),
-      );
-    }
-  }, [search, product]);
+        })
+  */
 
   useEffect(() => {
     if (scrollHeight >= 95) {
@@ -58,6 +74,8 @@ const Main = () => {
     if (searchKeyword === '') setFilterProduct(product);
     else setFilterProduct((prev) => prev.filter((item) => item.club.name.includes(searchKeyword)));
   }, [searchKeyword, product]);
+
+  console.log(filterProduct);
 
   if (loading) return <div>로딩중입니다...</div>;
 
