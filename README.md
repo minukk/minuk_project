@@ -36,7 +36,7 @@
 
 ### ProductDetail('/show')
 
-<img width="1440" alt="스크린샷 2022-05-17 오후 8 15 55" src="https://user-images.githubusercontent.com/78197196/168799228-da76540f-1a04-4f59-a246-61393a2769c9.png">
+<img width="480" alt="스크린샷 2022-05-17 오후 8 15 55" src="https://user-images.githubusercontent.com/78197196/168799228-da76540f-1a04-4f59-a246-61393a2769c9.png">
 
 - 상품 메인에서 상품 하나를 클릭할 시 ('/show?clubId=id')의 형태로 이동하고, fetch를 통해 id와 일치하는 Data를 찾아와 상태에 저장합니다.
 - 저장된 상태의 정보를 이용해서 상세 페이지의 내용을 렌더링합니다.
