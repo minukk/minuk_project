@@ -2,46 +2,46 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { CheckboxProps } from 'src/Type/interface';
 
-const Checkbox = ({ item, select, selectCate, setSelectCate }: CheckboxProps) => {
+const Checkbox = ({ item, select, selectFilter, setSelectFilter }: CheckboxProps) => {
   const [isChecked, setIsChecked] = useState(false);
 
-  const checkedType = (type: string) => {
-    let data;
-    switch (type) {
-      case 'placeFilter':
-        data = selectCate.placeFilter;
-        break;
-      case 'dayFilter':
-        data = selectCate.dayFilter;
-        break;
-      case 'typeFilter':
-        data = selectCate.typeFilter;
-        break;
-      case 'categoryFilter':
-        data = selectCate.categoryFilter;
-        break;
-      default:
-        break;
-    }
-    return data;
-  };
-
-  const handleChecked = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const checkedFunc = e.target.checked
-        ? checkedType(select.filter)?.concat(e.target.value)
-        : checkedType(select.filter)?.filter((item) => item !== e.target.value);
-      setSelectCate({
-        ...selectCate,
-        [select.filter]: checkedFunc,
-      });
+  const checkedType = useCallback(
+    (type: string) => {
+      let data;
+      switch (type) {
+        case 'placeFilter':
+          data = selectFilter.placeFilter;
+          break;
+        case 'dayFilter':
+          data = selectFilter.dayFilter;
+          break;
+        case 'typeFilter':
+          data = selectFilter.typeFilter;
+          break;
+        case 'categoryFilter':
+          data = selectFilter.categoryFilter;
+          break;
+        default:
+          break;
+      }
+      return data;
     },
-    [selectCate],
+    [selectFilter],
   );
+
+  const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const checkedFunc = e.target.checked
+      ? checkedType(select.filter)?.concat(e.target.value)
+      : checkedType(select.filter)?.filter((item) => item !== e.target.value);
+    setSelectFilter({
+      ...selectFilter,
+      [select.filter]: checkedFunc,
+    });
+  };
 
   useEffect(() => {
     checkedType(select.filter)?.includes(item) ? setIsChecked(true) : setIsChecked(false);
-  }, [selectCate]);
+  }, [selectFilter]);
 
   return (
     <CheckboxItem>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ProductProps } from 'src/Type/interface';
 import styled from '@emotion/styled';
 import Card from './Card/Card';
@@ -34,17 +34,19 @@ const Main = () => {
       .catch((err) => console.error(err));
   }, []);
 
+  const filterFunc = (prev: ProductProps[]) => {
+    let result: any;
+    for (const opt in search) {
+      if (search[opt].length === 0) continue;
+      result = prev.filter((data: any) => search[opt].includes(data.club[opt]));
+    }
+    return result;
+  };
+
   useEffect(() => {
     if (search.place.length === 0 && search.type.length === 0) setFilterProduct(product);
     else {
-      setFilterProduct(
-        product.filter((data: any) => {
-          for (const opt in search) {
-            if (search[opt].length === 0) continue;
-            return search[opt].includes(data.club[opt]);
-          }
-        }),
-      );
+      setFilterProduct((prev) => filterFunc(prev));
     }
   }, [search, product]);
 
