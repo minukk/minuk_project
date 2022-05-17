@@ -19,6 +19,8 @@
 
 ### ProductMain ('/apply')
 
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/78197196/168802167-c45297cf-880e-42d3-a79b-645a60caa02b.gif)
+
 - ProductMain은 URL에 '/apply'를 입력하거나 로고를 클릭시 이동할 수 있습니다.
 - ProductMain 컴포넌트는 상품 리스트, 상품 검색을 위한 필터로 구분 되어 있습니다.
 - 처음 '/apply'에 접속한 경우 fetch로 전체 데이터를 받아옵니다.
@@ -34,5 +36,7 @@
 
 ### ProductDetail('/show')
 
-상품 메인에서 상품 하나를 클릭할 시 ('/show?clubId=id')의 형태로 이동하고, fetch를 통해 id와 일치하는 Data를 찾아와 상태에 저장합니다.
-저장된 상태의 정보를 이용해서 상세 페이지의 내용을 렌더링합니다.
+<img width="1440" alt="스크린샷 2022-05-17 오후 8 15 55" src="https://user-images.githubusercontent.com/78197196/168799228-da76540f-1a04-4f59-a246-61393a2769c9.png">
+
+- 상품 메인에서 상품 하나를 클릭할 시 ('/show?clubId=id')의 형태로 이동하고, fetch를 통해 id와 일치하는 Data를 찾아와 상태에 저장합니다.
+- 저장된 상태의 정보를 이용해서 상세 페이지의 내용을 렌더링합니다.
