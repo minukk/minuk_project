@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import { ProductProps } from 'src/Type/interface';
 import styled from '@emotion/styled';
 import Card from './Card/Card';
