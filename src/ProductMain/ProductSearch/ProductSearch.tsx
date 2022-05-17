@@ -77,19 +77,27 @@ const ProductSearch = ({ setSearch, searchKeyword, setSearchKeyword, searchEnter
 
   return (
     <SearchWrap>
-      <ResetBtn onClick={resetSearch}>초기화</ResetBtn>
-      <CategoryList setIsFilterClick={setIsFilterClick} setSelect={setSelect} />
-      {isFilterClick && (
-        <CheckboxWrap>
-          {select.search.map((item) => {
-            return (
-              <Checkbox key={item} item={item} select={select} selectCate={selectCate} setSelectCate={setSelectCate} />
-            );
-          })}
-          <button onClick={() => setIsFilterClick(false)}>취소</button>
-          <button onClick={submitFilter}>적용</button>
-        </CheckboxWrap>
-      )}
+      <div>
+        <ResetBtn onClick={resetSearch}>초기화</ResetBtn>
+        <CategoryList setIsFilterClick={setIsFilterClick} setSelect={setSelect} />
+        {isFilterClick && (
+          <CheckboxWrap>
+            {select.search.map((item) => {
+              return (
+                <Checkbox
+                  key={item}
+                  item={item}
+                  select={select}
+                  selectCate={selectCate}
+                  setSelectCate={setSelectCate}
+                />
+              );
+            })}
+            <button onClick={() => setIsFilterClick(false)}>취소</button>
+            <button onClick={submitFilter}>적용</button>
+          </CheckboxWrap>
+        )}
+      </div>
       <SearchInput
         type='search'
         placeholder='검색어를 입력하세요.'
@@ -105,7 +113,14 @@ const SearchWrap = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+
+  > div {
+    position: relative;
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-wrap: wrap;
+  }
 `;
 
 const SearchInput = styled.input`
@@ -113,6 +128,12 @@ const SearchInput = styled.input`
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 20px;
+
+  @media screen and (max-width: 768px) {
+    width: 340px;
+    margin-top: 10px;
+    padding: 15px;
+  }
 `;
 
 const ResetBtn = styled.button`
@@ -122,12 +143,13 @@ const ResetBtn = styled.button`
 
 const CheckboxWrap = styled.ul`
   position: absolute;
-  top: 60px;
-  left: 430px;
+  top: 50px;
+  left: 50px;
   width: 260px;
   padding: 10px;
   background-color: #fff;
   border-radius: 10px;
+  box-shadow: 0px 0px 10px 2px lightgray;
 
   > button {
     margin: 0 5px;
