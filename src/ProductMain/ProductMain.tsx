@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ProductProps } from 'src/Type/interface';
 import styled from '@emotion/styled';
 import Card from './Card/Card';
@@ -50,20 +50,6 @@ const Main = () => {
     }
   }, [search, product]);
 
-  /* 
-    for (const opt in search) {
-      if (search[opt].length === 0) continue;
-      product.filter(data => search[opt].includes(data.club[opt]));
-    }
-
-     product.filter((data: any) => {
-          for (const opt in search) {
-            if (search[opt].length === 0) continue;
-            return search[opt].includes(data.club[opt]);
-          }
-        })
-  */
-
   useEffect(() => {
     if (scrollHeight >= 95) {
       setCount((prev) => prev + 12);
@@ -74,8 +60,6 @@ const Main = () => {
     if (searchKeyword === '') setFilterProduct(product);
     else setFilterProduct((prev) => prev.filter((item) => item.club.name.includes(searchKeyword)));
   }, [searchKeyword, product]);
-
-  console.log(filterProduct);
 
   if (loading) return <div>로딩중입니다...</div>;
 
