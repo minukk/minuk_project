@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ProductProps } from '../Type/interface';
-import Card from 'src/ProductMain/Card/Card';
 import styled from '@emotion/styled';
 
 const ProductDetail = () => {
@@ -24,7 +23,6 @@ const ProductDetail = () => {
       .catch((err) => console.error(err));
   }, [productId]);
 
-  console.log(productInfo);
   if (loading) return <div>로딩중입니다....</div>;
   return (
     <DetailWrap>
@@ -51,9 +49,11 @@ const ProductDetail = () => {
               </p>
             </div>
           </section>
-          <article>
-            <Card item={productInfo[0].club} />
-          </article>
+          <CardArticle>
+            <img alt={productInfo[0].club.name} src={productInfo[0].club.coverUrl} />
+            <h2>{productInfo[0].club.name}</h2>
+            <div></div>
+          </CardArticle>
         </>
       )}
     </DetailWrap>
@@ -91,6 +91,45 @@ const DetailWrap = styled.main`
         color: #888;
       }
     }
+  }
+
+  @media screen and (max-width: 1024px) {
+    display: block;
+    > section {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 10px;
+  }
+`;
+
+const CardArticle = styled.article`
+  width: 380px;
+  height: 500px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+
+  > img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+  }
+
+  > h2 {
+    margin: 30px 10px;
+    font-size: 26px;
+    font-weight: bold;
+  }
+
+  > p {
+    margin: 0 10px;
+    color: #888;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
   }
 `;
 
