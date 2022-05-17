@@ -51,7 +51,7 @@ const Main = () => {
   }, [search, product]);
 
   useEffect(() => {
-    if (scrollHeight >= 95) {
+    if (scrollHeight >= 95 && count < filterProduct.length) {
       setCount((prev) => prev + 12);
     }
   }, [scrollHeight]);
