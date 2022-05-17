@@ -52,13 +52,16 @@ const ProductSearch = ({ setSearch, searchKeyword, setSearchKeyword, searchEnter
         result += `${indexText}${text}`;
       });
     });
+
     setSearch({
       place: selectCate.placeFilter,
       day: selectCate.dayFilter,
       type: selectCate.typeFilter,
       category: selectCate.categoryFilter,
     });
+
     navigate(`/apply${result}`);
+
     setIsFilterClick(false);
   }, [selectCate, navigate, setSearch]);
 
