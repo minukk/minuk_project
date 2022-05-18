@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import { CheckboxProps } from 'src/Type/interface';
+import { CheckboxProps, SearchSelect } from 'src/Type/interface';
 
 const Checkbox = ({ item, select, selectFilter, setSelectFilter }: CheckboxProps) => {
   const [isChecked, setIsChecked] = useState(false);
@@ -29,15 +29,18 @@ const Checkbox = ({ item, select, selectFilter, setSelectFilter }: CheckboxProps
     [selectFilter],
   );
 
-  const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const checkedFunc = e.target.checked
-      ? checkedType(select.filter)?.concat(e.target.value)
-      : checkedType(select.filter)?.filter((item) => item !== e.target.value);
-    setSelectFilter({
-      ...selectFilter,
-      [select.filter]: checkedFunc,
-    });
-  };
+  const handleChecked = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const checkedFunc = e.target.checked
+        ? checkedType(select.filter)?.concat(e.target.value)
+        : checkedType(select.filter)?.filter((item) => item !== e.target.value);
+      setSelectFilter((prev: SearchSelect) => ({
+        ...prev,
+        [select.filter]: checkedFunc,
+      }));
+    },
+    [checkedType, setSelectFilter, select.filter],
+  );
 
   useEffect(() => {
     checkedType(select.filter)?.includes(item) ? setIsChecked(true) : setIsChecked(false);

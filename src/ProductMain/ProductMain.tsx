@@ -34,21 +34,24 @@ const Main = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  const filterFunc = (prev: ProductProps[]) => {
-    let result: any;
-    for (const opt in search) {
-      if (search[opt].length === 0) continue;
-      result = prev.filter((data: any) => search[opt].includes(data.club[opt]));
-    }
-    return result;
-  };
+  const filterFunc = useCallback(
+    (prev: ProductProps[]) => {
+      let result: any;
+      for (const opt in search) {
+        if (search[opt].length === 0) continue;
+        result = prev.filter((data: any) => search[opt].includes(data.club[opt]));
+      }
+      return result;
+    },
+    [search],
+  );
 
   useEffect(() => {
     if (search.place.length === 0 && search.type.length === 0) setFilterProduct(product);
     else {
       setFilterProduct((prev) => filterFunc(prev));
     }
-  }, [search, product]);
+  }, [search, product, filterFunc]);
 
   useEffect(() => {
     if (scrollHeight >= 95 && count < filterProduct.length) {

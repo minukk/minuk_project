@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import styled from '@emotion/styled';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ProductSearchProps, SearchSelect, SearchStateProps } from 'src/Type/interface';
 import Checkbox from './Checkbox/Checkbox';
 import CategoryList from './CategoryList/CategoryList';
@@ -21,6 +21,7 @@ const ProductSearch = ({ setSearch, searchKeyword, setSearchKeyword, searchEnter
   });
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const resetSearch = useCallback(() => {
     setSelectFilter({
@@ -67,11 +68,11 @@ const ProductSearch = ({ setSearch, searchKeyword, setSearchKeyword, searchEnter
   const handleSearchInput = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === 'Enter') {
-        navigate(`/apply?searchKeyword=${searchKeyword}`);
+        navigate(`/apply${location.search}?searchKeyword=${searchKeyword}`);
         searchEnter();
       }
     },
-    [searchKeyword, navigate, searchEnter],
+    [searchKeyword, navigate, searchEnter, location.search],
   );
 
   return (
